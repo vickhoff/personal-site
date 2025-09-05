@@ -64,3 +64,16 @@ section {
     padding: 64px;
     background: linear-gradient(128deg, #C1B9F8 28.27%, #1C1555 93.02%);
 }
+
+header .img {
+    position: relative;
+    background-color: grey;
+    border-radius: 8px;
+    width:100px;
+    height: 100px;
+}
+
+.img1 {
+    top: 100px;
+    right:100px
+}
