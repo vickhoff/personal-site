@@ -82,7 +82,7 @@ section {
     height: 600px;
     overflow-y: scroll;
     scrollbar-color: #1C1555 rgba(0,0,0,0);
-    scrollbar-width: thin;;
+    scrollbar-width: thin;
 }
 
 .stories-title {
@@ -137,7 +137,69 @@ section {
     line-height: 1.8rem;
     padding-block: 32px;
     border-block-start: 1px solid #AEAEAE;
+    position: relative;
+    overflow: hidden;
+    transition: padding-inline-start 220ms ease, color 200ms ease;
 }
+
+/* Generic overlay for image-on-hover effect */
+.fact-item::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 110%;
+    opacity: 0;
+    transform: scale(1.02);
+    transition: opacity 260ms ease, transform 380ms ease;
+    z-index: 0;
+    pointer-events: none;
+    background-size: cover;
+    z-index:-1;
+}
+
+/* Ensure text sits above the overlay */
+.fact-item > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* Variant: Oslo image */
+.fact-item.oslo::before {
+    background-image: url("/images/Oslo.png");
+}
+
+.fact-item.gbg::before {
+    background-image: url("/images/gbg.png");
+
+}
+
+.fact-item.elsa::before {
+    background-image: url("/images/elsa.png");
+
+}
+
+.fact-item.beer::before {
+    background-image: url("/images/beer.png");
+
+}
+
+/* Hover: reveal image, grow it, and nudge text */
+.fact-item:hover {
+    color: white;
+    padding-inline-start: 12px;
+    border-radius: 8px;
+
+    & span {
+        color: white;
+    }
+}
+.fact-item:hover::before {
+    opacity: 1;
+    transform: scale(1.08);
+}
+.fact-item:hover::after { opacity: 1; }
 
 /* Desktop: apply last-row border only above 900px */
 @media (min-width: 901px) {
