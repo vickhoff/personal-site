@@ -75,7 +75,17 @@ section {
     background: grey;
     border-radius: 32px;
     padding: 64px;
-    background: linear-gradient(128deg, #C1B9F8 28.27%, #1C1555 93.02%);
+    background: linear-gradient(178deg, #C1B9F8 45.77%, #1C1555 102.18%);
+    height: 600px;
+    overflow-y: scroll;
+}
+
+.stories-title {
+    position: sticky;
+    top: 0;
+    left: 0;
+    align-self: start;
+    z-index: 1;
 }
 
 .story-item {
