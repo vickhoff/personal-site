@@ -1,6 +1,6 @@
 :root {
     font: 20px "DM Sans", sans-serif;
-    font-weight: 100;
+    font-weight: 400;
 }
 
 body {
@@ -73,11 +73,13 @@ section {
     display: grid;
     grid-template-columns: 1fr 1fr;
     background: grey;
-    border-radius: 32px;
+    border-radius: 32px 4px 4px 32px;
     padding: 64px;
     background: linear-gradient(178deg, #C1B9F8 45.77%, #1C1555 102.18%);
     height: 600px;
     overflow-y: scroll;
+    scrollbar-color: #1C1555 rgba(0,0,0,0);
+    scrollbar-width: thin;;
 }
 
 .stories-title {
@@ -99,3 +101,19 @@ section {
         padding-block-start: 7px;
     }
 }
+
+.card-container {
+    display: grid;
+    gap: 32px;
+    grid-template-columns: repeat(2, 1fr);
+
+    & img {
+        margin-block-end: 1.8rem;
+        border-radius: 8px;
+    }
+
+}
+
+.card {
+}
+
