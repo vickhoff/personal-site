@@ -3,10 +3,6 @@
     font-weight: 400;
 }
 
-body {
-    padding-inline: 24px;
-}
-
 h1 {
     font-weight: 400;
     font-size: 3.6rem;
@@ -18,10 +14,12 @@ h2 {
     font-weight: 500;
     font-size: 2rem;
     line-height: 2.4rem;
+    margin-block-end: 88px;
+    width: 10ch;
 }
 
 h3 {
-    font-size: 1.65rem;
+    font-size: 1.45rem;
     font-weight: 500;
     line-height: 1.8rem;
 }
@@ -29,14 +27,19 @@ h3 {
 main {
     max-width: 1400px;
     margin-inline: auto;
+    padding-inline: 24px;
 }
 
 header {
-    height: 80vh;
-    vertical-align: bottom;
-    display: flex;
-    align-items: flex-end;
-    margin-block-end: 5rem;
+    padding-inline: 24px;
+    
+    & .container {
+        height: 80vh;
+        vertical-align: bottom;
+        display: flex;
+        align-items: flex-end;
+        margin-block-end: 5rem;
+    }
 
     & .img {
         width: 100px;
@@ -53,7 +56,7 @@ header {
 }
 
 section {
-    margin-block-end: 8rem;
+    margin-block-end: 12rem;
 }
 
 .caption {
@@ -104,7 +107,7 @@ section {
 
 .card-container {
     display: grid;
-    gap: 32px;
+    gap: 88px;
     grid-template-columns: repeat(2, 1fr);
 
     & img {
@@ -112,8 +115,81 @@ section {
         border-radius: 8px;
     }
 
+    & h3 {
+        margin-block-end: 1rem;
+    }
+
 }
 
-.card {
+.fact-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* desktop */
+    gap: 0 24px;
+    list-style: none;
+    padding-inline-start: 0;
+
+}
+
+.fact-item {
+    display: inline-flex;
+    font-size: 1.45rem;
+    font-weight: 500;
+    line-height: 1.8rem;
+    padding-block: 32px;
+    border-block-start: 1px solid #AEAEAE;
+}
+
+/* Desktop: apply last-row border only above 900px */
+@media (min-width: 901px) {
+    .fact-item:nth-last-child(-n + 3) {
+        border-block-end: 1px solid #AEAEAE;
+    }
+}
+/* Tablet: 2 columns */
+@media (width < 900px) {
+    .fact-list { 
+        grid-template-columns: repeat(2, 1fr); 
+    }
+
+    .fact-item {
+        border-block-end: 0;
+    }
+
+    .fact-item:nth-last-child(-n + 2) { 
+        border-block-end: 1px solid #AEAEAE; 
+    }
+  }
+
+  /* Mobile: 1 column */
+@media (width < 600px) {
+    .fact-list { 
+        grid-template-columns: 1fr;
+    }
+    
+    .fact-item {
+        border-block-end: 0; 
+    }
+
+    .fact-item:last-child {
+        border-block-end: 1px solid #AEAEAE;
+    }
+  }
+
+.fact-item span {
+    display: block;
+    color: #B0B0B0;
+    width: 1.8rem;
+    margin-inline-end: 1.1rem;
+}
+
+footer {
+    background-color: lightgrey;
+    padding-block: 3rem;
+}
+
+footer p {
+    font-weight: 500;
+    font-size: 2rem;
+    line-height: 2.4rem;
 }
 
