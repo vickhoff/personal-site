@@ -20,6 +20,12 @@ h2 {
     line-height: 2.4rem;
 }
 
+h3 {
+    font-size: 1.65rem;
+    font-weight: 500;
+    line-height: 1.8rem;
+}
+
 main {
     max-width: 1400px;
     margin-inline: auto;
@@ -31,12 +37,19 @@ header {
     display: flex;
     align-items: flex-end;
     margin-block-end: 5rem;
-    
-    & svg {
-        position: absolute;
-        right: 0;
-        z-index: -1;
+
+    & .img {
+        width: 100px;
+        height: 100px;
+        background-color: lightgrey;
     }
+
+    .img1 {
+        position: absolute;
+        top: 100px;
+        left: 100px;
+    }
+    
 }
 
 section {
@@ -46,7 +59,7 @@ section {
 .caption {
     font-size: 0.7rem;
     text-transform: uppercase;
-    font-weight: 700;
+    font-weight: 600;
     letter-spacing: 2px;
     margin-block-end:1rem;
 }
@@ -58,22 +71,21 @@ section {
 
 .my-story {
     display: grid;
-    grid-template-columns: 200px 1fr;
+    grid-template-columns: 1fr 1fr;
     background: grey;
     border-radius: 32px;
     padding: 64px;
     background: linear-gradient(128deg, #C1B9F8 28.27%, #1C1555 93.02%);
 }
 
-header .img {
-    position: relative;
-    background-color: grey;
-    border-radius: 8px;
-    width:100px;
-    height: 100px;
-}
+.story-item {
+    display: flex;
+    list-style-type: none;
+    gap: 2rem;
+    margin-block-end: 2.2rem;
 
-.img1 {
-    top: 100px;
-    right:100px
+    & .caption {
+        margin: 0;
+        padding-block-start: 7px;
+    }
 }
