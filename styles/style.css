@@ -8,6 +8,7 @@ h1 {
     font-size: 3.6rem;
     line-height: 3.6rem;
     width: 60%;
+    z-index: 1;
 }
 
 h2 {
@@ -29,6 +30,8 @@ main {
 }
 
 header {
+    transform-style: preserve-3d;
+    z-index: -1;
     
     & .container {
         height: 80vh;
@@ -36,6 +39,7 @@ header {
         display: flex;
         align-items: flex-end;
         margin-block-end: 5rem;
+        position: relative;
     }
 
     & .img {
@@ -51,6 +55,117 @@ header {
     }
     
 }
+
+/* Parallax prototype */
+
+.wrapper{
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: 100vh;
+    perspective: 10px;
+} 
+
+.hero { 
+    perspective: 1px; 
+    transform-style: preserve-3d; 
+}
+
+.parallax {
+    position: absolute;
+    inset: 0;
+    transform-style: preserve-3d;
+    pointer-events: none;
+}
+
+.parallax__layer { 
+    position: absolute; inset: -10vh 0 0 0; transform-style: preserve-3d; 
+}
+
+/* Depth: translateZ for parallax speeds (more negative = farther, moves slower) */
+.parallax__layer--back  { 
+    transform: translateZ(-20px) scale(10);
+}
+
+.parallax__layer--mid   { 
+    transform: translateZ(-8px) scale(6);
+}
+
+.parallax__layer--front { 
+    transform: translateZ(0px) scale(1);
+}
+
+
+
+.parallax__layer--back div {
+    background-color: white;
+    & img {
+        opacity: 0.7;
+        display: block;
+        filter: blur(18px);
+    }
+}
+
+.parallax__layer--mid div {
+    background-color: white;
+    & img {
+        opacity: 0.7;
+        display: block;
+    }
+}
+
+.pimg {
+  position: absolute;
+  /* width: clamp(120px, 12vw, 260px); */
+  height: auto;
+  will-change: transform;
+}
+
+
+
+/* Position each image within the same layer */
+.pimg--1 { 
+    top: 10%; left: 8%; 
+}
+.pimg--2 { 
+    top: 80%;
+    left: 60%; 
+}
+
+.pimg--3 { 
+    top: 20%;
+    left: 106%;
+}
+.pimg--4 { 
+    top: 105%;
+    left: 28%;
+}
+
+.pimg--5 { 
+    top: 0%;
+    left: -11%;
+}
+.pimg--6 { 
+    top: 75%; 
+    left: 80%; 
+}
+.pimg--7 { 
+    top: 0%;
+    left: 100%;
+}
+.pimg--8 { 
+    top: 76%;
+    left: 80%;
+}
+.pimg--9 { 
+    top: 40%;
+    left: 20%;
+}
+
+/* End parallax css */
+
+
+
+
 
 section {
     margin-block-end: 12rem;
