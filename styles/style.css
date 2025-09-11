@@ -16,7 +16,7 @@ h2 {
     font-size: 2rem;
     line-height: 2.4rem;
     margin-block-end: 88px;
-    width: 10ch;
+    width: 12ch;
 }
 
 h3 {
@@ -56,6 +56,19 @@ header {
     
 }
 
+a {
+    color: #4550E9;
+    text-underline-offset: 15%;
+    text-decoration-thickness: 2px;
+    transition: all 200ms ease;
+}
+
+a:hover {
+    text-underline-offset: 5%;
+
+}
+
+
 /* Parallax prototype */
 
 .wrapper{
@@ -78,7 +91,9 @@ header {
 }
 
 .parallax__layer { 
-    position: absolute; inset: -10vh 0 0 0; transform-style: preserve-3d; 
+    position: absolute; 
+    inset: -10vh 0 0 0; 
+    transform-style: preserve-3d; 
 }
 
 /* Depth: translateZ for parallax speeds (more negative = farther, moves slower) */
@@ -150,7 +165,7 @@ header {
 }
 .pimg--7 { 
     top: 0%;
-    left: 100%;
+    left: 76%;
 }
 .pimg--8 { 
     top: 76%;
@@ -221,15 +236,50 @@ section {
     }
 }
 
+.card-item {
+
+
+    & .img-container {
+        overflow: hidden;
+        border-radius: 12px;        /* optional */
+        margin-block-end: 1.8rem;
+
+        & img {
+            display: block;
+            width: 100%;
+            height: 100%;               /* fill the container */
+            object-fit: cover;          /* crop instead of stretch */
+            transform-origin: center;
+            transition: all 300ms ease;
+            filter:contrast(100%);
+        }
+    }
+}
+
+.canmore {
+    aspect-ratio: 8 / 6;
+}
+
+.absence {
+    aspect-ratio: 9 / 11;
+}
+
+.brewed {
+    aspect-ratio: 8 / 5;
+}
+
+
+
+.card-item:hover img {
+    transform: scale(1.06);
+    filter:contrast(120%);
+
+}
+
 .card-container {
     display: grid;
     gap: 88px;
     grid-template-columns: repeat(2, 1fr);
-
-    & img {
-        margin-block-end: 1.8rem;
-        border-radius: 8px;
-    }
 
     & h3 {
         margin-block-end: 1rem;
@@ -301,6 +351,28 @@ section {
 
 }
 
+.fact-item.xray::before {
+    background-image: url("/images/xray.png");
+
+}
+
+.fact-item.danish::before {
+    background-image: url("/images/danish.png");
+
+}
+
+.hovered {
+    display: none;
+    opacity: 0;
+    transition: opacity 260ms ease;
+}
+
+.resting {
+    display: inline;
+    opacity: 1;
+    transition: opacity 260ms ease;
+}
+
 /* Hover: reveal image, grow it, and nudge text */
 .fact-item:hover {
     color: white;
@@ -310,6 +382,16 @@ section {
     & span {
         color: white;
     }
+
+    & .hovered {
+        display: inline;
+        opacity: 1;
+    }
+    & .resting {
+        display: none;
+        opacity: 0;
+    }
+
 }
 .fact-item:hover::before {
     opacity: 1;
@@ -334,7 +416,7 @@ section {
     }
 
     .fact-item:nth-last-child(-n + 2) { 
-        border-block-end: 1px solid #AEAEAE; 
+        border-block-end: 1px solid #AEAEAE;
     }
   }
 
@@ -353,7 +435,7 @@ section {
     }
   }
 
-.fact-item span {
+.fact-item .number {
     display: block;
     color: #B0B0B0;
     width: 1.8rem;
@@ -361,14 +443,13 @@ section {
 }
 
 footer {
-    background-color: lightgrey;
-    padding-block: 3rem;
+    background-color: #111111;
+    color:white;
     padding-inline: 24px;
-}
+    padding-block: 130px;
 
-footer p {
-    font-weight: 500;
-    font-size: 2rem;
-    line-height: 2.4rem;
+    & span {
+        color: #B0B0B0;
+    }
 }
 
