@@ -214,38 +214,67 @@ a:hover {
 }
 
 .my-story {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    background: grey;
-    border-radius: 32px 4px 4px 32px;
-    padding: 64px;
-    background: linear-gradient(178deg, #C1B9F8 45.77%, #1C1555 102.18%);
-    height: 600px;
-    overflow-y: scroll;
-    scrollbar-color: #1C1555 rgba(0,0,0,0);
-    scrollbar-width: thin;
-
-    & :not(:last-of-type) {
-        margin-block-end: 2.2rem;
-    }
+    border-radius: 32px;
+    padding-block-start: 64px;
+    background-color: #C1B9F8;
+    position: relative;
+    overflow: hidden;
 }
 
 .stories-title {
     position: sticky;
-    top: 0;
     left: 0;
-    align-self: start;
-    z-index: 1;
+    padding-inline: 64px;
+}
+
+.story-scroll {
+    overflow-x: scroll;
+    scrollbar-color: #1C1555 rgba(0,0,0,0);
+    scrollbar-width: thin;
+    position:relative;
+    display: flex;
+    gap: 32px;
+    margin-block-start: 6rem;
+    padding-inline: 64px;
+    scroll-padding-inline: 64px;
+    
+
+}
+
+.my-story::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    content: "";    
+    background-image: linear-gradient(89deg, rgba(28, 21, 85, 0.00) 61.99%, #1C1555 119.35%);
+    pointer-events: none;
+
+}
+
+.story-item:first-child{
+    border: none;
+    padding-inline-start: 0;
 }
 
 .story-item {
-    display: flex;
     list-style-type: none;
-    gap: 2rem;
+    flex-basis: 20rem;
+    flex-shrink: 0;
+    border-inline-start: 1px dashed rgba(29, 22, 86, 0.38);
+    padding-block-end: 56px;
+    padding-inline-start: 16px;
+    scroll-snap-align: start;
 
-    & .caption {
-        margin: 0;
-        padding-block-start: 7px;
+    & .caption::before {
+        content: "";
+        display: inline-block;
+        border-radius: 100px;
+        width: 8px;
+        height: 8px;
+        background-color: #e61111;
+        margin-inline-end: 8px;
     }
 }
 
@@ -344,31 +373,30 @@ a:hover {
 
 /* Variant: Oslo image */
 .fact-item.oslo::before {
-    background-image: url("/images/Oslo.png");
+    background-image: url("../images/Oslo.png");
 }
 
 .fact-item.gbg::before {
-    background-image: url("/images/gbg.png");
+    background-image: url("../images/gbg.png");
 
 }
 
 .fact-item.elsa::before {
-    background-image: url("/images/elsa.png");
+    background-image: url("../images/elsa.png");
 
 }
 
 .fact-item.beer::before {
-    background-image: url("/images/beer.png");
+    background-image: url("../images/beer.png");
 
 }
 
 .fact-item.xray::before {
-    background-image: url("/images/xray.png");
-
+    background-image: url("../images/xray.png");
 }
 
 .fact-item.danish::before {
-    background-image: url("/images/danish.png");
+    background-image: url("../images/danish.png");
 
 }
 
@@ -442,16 +470,6 @@ footer {
     h1 {
         width: 100%;
     }
-
-    .my-story {
-        display: grid;
-        grid-template-columns: 1fr;
-        border-radius: 32px;
-        padding: 64px;
-        background: linear-gradient(178deg, #C1B9F8 45.77%, #1C1555 102.18%);
-        overflow: visible;
-        height: auto;
-    }
     
     .fact-list { 
         grid-template-columns: repeat(2, 1fr); 
@@ -465,9 +483,7 @@ footer {
         border-block-end: 1px solid #AEAEAE;
     }
 
-    .stories-title {
-        position: relative;
-    }
+
   }
 
   /* Mobile: 1 column */
@@ -493,9 +509,27 @@ footer {
     }
 
     .my-story {
-        grid-template-columns: 1fr;
         border-radius: 32px;
-        padding: 48px;
+        padding-block-start: 36px;
+    }
+
+    .story-list {
+        padding-inline: 36px;
+        margin-block-start: 3rem;
+    }
+
+    .story-list:firstchild {
+        border:0;
+    }
+
+    .story-item {
+        flex-basis: 15rem;
+    }
+    
+    .stories-title {
+        position: sticky;
+        left: 0;
+        padding-inline: 36px;
     }
 
     .card-container {
@@ -542,12 +576,31 @@ footer {
         font-size: 1.25rem;
     }
 
-    .my-story {
-        padding: 32px;
-    }
-
     .card-container {
         grid-template-columns: 1fr;
         gap:56px;
     }
+
+    .my-story {
+        padding-block: 36px;
+    }
+    .story-list {
+        flex-direction: column;
+        padding-inline: 0;
+        margin-block-start: 0;
+    }
+
+    .story-item {
+        border-inline-start:0;
+        border-block-start: 1px dashed rgba(29, 22, 86, 0.38);
+        margin-inline-start: 32px;
+        padding-inline-end: 36px;
+        padding-inline-start: 0;
+        padding-block-start: 16px;
+        padding-block-end: 0;
+        flex-basis:auto;
+        flex-shrink: 0;
+    }
+
+
 }
