@@ -22,6 +22,8 @@
         --color-foreground-default: #333;
         --color-foreground-subtle: #B0B0B0;
         --color-foreground-inverted: white;
+        --color-foreground-subtle-inverted: #B0B0B0;
+
 
         --color-border: #AEAEAE;
         --color-border-accent: rgba(29, 22, 86, 0.38);
@@ -56,6 +58,44 @@
      --body-padding: 16px;
     } 
  }
+
+ @keyframes coverfrombottom {
+    0% {
+        transform: scaleY(1);
+        transform-origin: top;
+    }
+    100% {
+        transform: scaleY(0);
+        transform-origin: top;
+        display: none;
+
+    }
+  }
+
+  @keyframes fadeInUp {
+    0% {
+        transform:translateY(100%);
+        opacity: 0;
+    }
+    100% {
+        transform:translateY(0);
+        opacity: 1;
+
+    }
+  }
+
+  @keyframes scaleUp {
+    0% {
+        transform:scale(0.6);
+        opacity: 0;
+    }
+    100% {
+        transform:scale(1);
+        opacity: 1;
+
+    }
+  }
+
  body {
     background-color: var(--color-surface-default);
     color: var(--color-foreground-default)
@@ -71,6 +111,9 @@ h1 {
     line-height: 3.6rem;
     width: 60%;
     z-index: 1;
+    animation: fadeInUp 0.7s cubic-bezier(0.85, 0.09, 0.15, 0.91) forwards;
+    animation-delay: 0.6s;
+    opacity: 0;
 }
 
 h2 {
@@ -91,6 +134,18 @@ main {
     margin-inline: var(--body-padding);
 }
 
+.load-animation {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    background-color: black;
+    z-index: 99;
+    animation: coverfrombottom 0.7s cubic-bezier(0.85, 0.09, 0.15, 0.91) forwards;
+    animation-delay: 0.5s;
+
+
+}
+
 header {
     transform-style: preserve-3d;
     z-index: -1;
@@ -102,18 +157,6 @@ header {
         align-items: flex-end;
         margin-block-end: 5rem;
         position: relative;
-    }
-
-    & .img {
-        width: 100px;
-        height: 100px;
-        background-color: lightgrey;
-    }
-
-    .img1 {
-        position: absolute;
-        top: 100px;
-        left: 100px;
     }
     
 }
@@ -163,40 +206,57 @@ a:hover {
 }
 
 /* Depth: translateZ for parallax speeds (more negative = farther, moves slower) */
-.parallax__layer--back  { 
+.parallax__layer--back { 
     transform: translateZ(-20px) scale(10);
 }
 
-.parallax__layer--mid   { 
+.parallax__layer--mid { 
     transform: translateZ(-8px) scale(6);
 }
 
-.parallax__layer--front { 
-    transform: translateZ(0px) scale(1);
+.parallax__layer--mid img, 
+.parallax__layer--back img,
+.parallax__layer--front img {
+    opacity: 0;
+    display: block;
+    animation: scaleUp 1.2s linear(0, 0.618 4.6%, 1.072 9.7%, 1.358 15.3%, 1.446 18.4%, 1.497 21.7%, 1.512 23.9%, 1.514 26.2%, 1.481 31.5%, 1.421 36.4%, 1.174 53.4%, 1.108 59.5%, 1.059 65.7%, 1.028 71.9%, 1.009 78.9%, 1) forwards;
 }
 
-
-
-.parallax__layer--back div {
-    background-color: white;
-    & img {
-        opacity: 0.7;
-        display: block;
-        filter: blur(18px);
-    }
+.parallax__layer--back img {
+    animation-delay: 1.2s;
+    filter: blur(18px);
 }
 
-.parallax__layer--mid div {
-    background-color: white;
-    & img {
-        opacity: 0.7;
-        display: block;
-    }
+.parallax__layer--mid img {
+    animation-delay: 1.6s;
+}
+
+.parallax__layer--front img {
+    animation-delay: 2s;
+}
+
+/* .parallax__layer--back::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: var(--color-surface-default);
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.1;
+    filter: blur(18px);
+} */
+
+.dimmer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-surface-default);
+    opacity: 0.2;
+
 }
 
 .pimg {
   position: absolute;
-  /* width: clamp(120px, 12vw, 260px); */
   height: auto;
   will-change: transform;
 }
@@ -205,7 +265,8 @@ a:hover {
 
 /* Position each image within the same layer */
 .pimg--1 { 
-    top: 10%; left: 8%; 
+    top: 10%; 
+    left: 8%; 
 }
 .pimg--2 { 
     top: 80%;
