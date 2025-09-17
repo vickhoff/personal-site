@@ -37,16 +37,16 @@
     :root {
         --color-surface-default: #101010;
         --color-surface-shy: rgb(39 39 39);
-        --color-surface-inverted: white;
+        --color-surface-inverted: #eae8e3;
         --color-surface-accent: #453F73;
         --color-surface-accent-bold: #09071d;
         --color-surface-alert: #dc3939;
 
 
         --color-foreground-default: #EAE8E3;
-        --color-foreground-subtle: #3d3d3d;
+        --color-foreground-subtle: #5a5a5a;
         --color-foreground-inverted: #333;
-        --color-foreground-subtle-inverted: #B0B0B0;
+        --color-foreground-subtle-inverted: #a09e99;
 
         --color-border: #3a3a3a;
         --color-border-accent: rgb(137 132 179 / 38%);
