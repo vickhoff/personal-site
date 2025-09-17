@@ -16,7 +16,7 @@
 
     --color-foreground-default: light-dark(#333, #EAE8E3);
     --color-foreground-subtle: light-dark(#B0B0B0, #5a5a5a);
-    --color-foreground-inverted: white;
+    --color-foreground-inverted: light-dark(#eae8e3, #101010);
     --color-foreground-subtle-inverted: light-dark(#B0B0B0, #a09e99);
 
     --color-border: light-dark(#AEAEAE, #3a3a3a);
@@ -659,6 +659,11 @@ footer {
 
     & span {
         color: var(--color-foreground-subtle-inverted);
+        transition: color 0.3s ease;
+    }
+
+    & h3 {
+        color: var(--color-foreground-inverted);
         transition: color 0.3s ease;
     }
 }
