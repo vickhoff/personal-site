@@ -2,58 +2,36 @@
     font: 20px "DM Sans", sans-serif;
     font-weight: 400;
 
-    color-scheme: light dark;
+    color-scheme: dark light;
 
     --body-padding: 24px;
 
-   
+    --color-surface-default: light-dark(#eae8e3, #101010);
+    --color-surface-shy: light-dark(rgb(247, 247, 247), rgb(39 39 39));
+    --color-surface-inverted: light-dark(#111111, #eae8e3);
+    --color-surface-accent: light-dark(#D1C4F0, #453F73);
+    --color-surface-accent-bold: light-dark(#3c2a63, #09071d);
+    --color-surface-alert: light-dark(#e61111, #dc3939);
+    --color-surface-raised: light-dark(#eae8e3, #101010);
 
+    --color-foreground-default: light-dark(#333, #EAE8E3);
+    --color-foreground-subtle: light-dark(#B0B0B0, #5a5a5a);
+    --color-foreground-inverted: white;
+    --color-foreground-subtle-inverted: light-dark(#B0B0B0, #a09e99);
+
+    --color-border: light-dark(#AEAEAE, #3a3a3a);
+    --color-border-accent: light-dark(rgba(29, 22, 86, 0.38), rgb(137 132 179 / 38%));
+
+    --color-link: light-dark(#4550E9, #4550E9);
+
+    /* Transition for color-scheme changes */
+    transition: color-scheme 0.3s ease;
 }
 
-@media (prefers-color-scheme: light) {
-    :root {
-        --color-surface-default: #eae8e3;
-        --color-surface-shy: rgb(247, 247, 247);
-        --color-surface-inverted: #111111;
-        --color-surface-accent: #D1C4F0;
-        --color-surface-accent-bold: #3c2a63;
-        --color-surface-alert: #e61111;
-
-
-        --color-foreground-default: #333;
-        --color-foreground-subtle: #B0B0B0;
-        --color-foreground-inverted: white;
-        --color-foreground-subtle-inverted: #B0B0B0;
-
-
-        --color-border: #AEAEAE;
-        --color-border-accent: rgba(29, 22, 86, 0.38);
-
-        --color-link: #4550E9;
-    }
-  }
-
-  @media (prefers-color-scheme: dark) {
-    :root {
-        --color-surface-default: #101010;
-        --color-surface-shy: rgb(39 39 39);
-        --color-surface-inverted: #eae8e3;
-        --color-surface-accent: #453F73;
-        --color-surface-accent-bold: #09071d;
-        --color-surface-alert: #dc3939;
-
-
-        --color-foreground-default: #EAE8E3;
-        --color-foreground-subtle: #5a5a5a;
-        --color-foreground-inverted: #333;
-        --color-foreground-subtle-inverted: #a09e99;
-
-        --color-border: #3a3a3a;
-        --color-border-accent: rgb(137 132 179 / 38%);
-
-        --color-link: #4550E9;
-    }
-  }
+/* When theme toggle is checked, force light mode */
+:root:has(.theme-toggle:checked) {
+    color-scheme: light;
+}
 
 @media (width < 600px) { 
     :root {
@@ -100,8 +78,14 @@
 
  body {
     background-color: var(--color-surface-default);
-    color: var(--color-foreground-default)
+    color: var(--color-foreground-default);
+    transition: background-color 0.3s ease, color 0.3s ease;
  }
+
+/* Universal transition for color-scheme changes */
+*, *::before, *::after {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
 
 ul {
     padding-inline-start: 0;
@@ -166,6 +150,67 @@ nav {
         display: flex;
         list-style-type: none;
     }
+}
+
+/* Theme toggle styling */
+.theme-toggle-container {
+    position: sticky;
+    bottom: 24px;
+    left: 24px;
+    z-index: 99;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-inline-end: 8px;
+    padding-block: 12px;
+    padding-inline-start: 12px;
+    padding-inline-end: 16px;
+    background-color: var(--color-surface-raised);
+    border-radius: 100px;
+    border: 1px solid var(--color-border);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.1);
+}
+.theme-toggle {
+    appearance: none;
+    width: 48px;
+    height: 24px;
+    background-color: var(--color-surface-shy);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    margin-inline-end: 8px;
+}
+
+.theme-toggle::before {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 18px;
+    height: 18px;
+    background-color: var(--color-foreground-default);
+    border-radius: 50%;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.theme-toggle:checked {
+    background-color: var(--color-surface);
+    border-color: var(--color-border);
+}
+
+.theme-toggle:checked::before {
+    transform: translateX(24px);
+    background-color: var(--color-foreground-default);
+}
+
+.theme-toggle + label {
+    cursor: pointer;
+    font-size: 0.8rem;
+    color: var(--color-foreground-default);
+    transition: color 0.3s ease;
 }
 
 .load-animation {
@@ -362,6 +407,7 @@ a:hover {
     background-color: var(--color-surface-accent);
     position: relative;
     overflow: hidden;
+    transition: background-color 0.3s ease;
 }
 
 .stories-title {
@@ -409,6 +455,7 @@ a:hover {
     padding-block-end: 56px;
     padding-inline-start: 16px;
     scroll-snap-align: start;
+    transition: border-color 0.3s ease;
 
     & .caption::before {
         content: "";
@@ -418,6 +465,7 @@ a:hover {
         height: 8px;
         background-color: var(--color-surface-alert);
         margin-inline-end: 8px;
+        transition: background-color 0.3s ease;
     }
 }
 
@@ -497,7 +545,7 @@ a:hover {
     border-block-start: 1px solid var(--color-border);
     position: relative;
     overflow: hidden;
-    transition: padding-inline-start 220ms ease, color 200ms ease;
+    transition: padding-inline-start 220ms ease, color 200ms ease, border-color 0.3s ease;
     min-height: 2lh;
     box-sizing: content-box;
 }
@@ -607,9 +655,11 @@ footer {
     color:var(--color-foreground-inverted);
     padding-inline: var(--body-padding);
     padding-block: 130px;
+    transition: background-color 0.3s ease, color 0.3s ease;
 
     & span {
         color: var(--color-foreground-subtle-inverted);
+        transition: color 0.3s ease;
     }
 }
 
