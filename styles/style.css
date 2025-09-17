@@ -12,7 +12,7 @@
 
 @media (prefers-color-scheme: light) {
     :root {
-        --color-surface-default: white;
+        --color-surface-default: #eae8e3;
         --color-surface-shy: rgb(247, 247, 247);
         --color-surface-inverted: #111111;
         --color-surface-accent: #C1B9F8;
@@ -43,7 +43,7 @@
         --color-surface-alert: #dc3939;
 
 
-        --color-foreground-default: white;
+        --color-foreground-default: #EAE8E3;
         --color-foreground-subtle: #3d3d3d;
         --color-foreground-inverted: #333;
         --color-foreground-subtle-inverted: #B0B0B0;
@@ -608,7 +608,7 @@ footer {
 
 @media (width > 901px) {
     .fact-item:nth-last-child(-n + 3) {
-        border-block-end: 1px solid #AEAEAE;
+        border-block-end: 1px solid var(--color-border);
     }
 }
 /* Tablet: 2 columns */
