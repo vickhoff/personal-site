@@ -18,5 +18,6 @@ When I got stuck I googled/AI:d or asked classmates to get myself out of the pro
 ## What I'm proud about
 Im proud about how I challenged myself and used techniques I didn’t know existed before
 
-
+## The site
+[vickhoff.github.io/personal-site](https://vickhoff.github.io/personal-site/)
 
